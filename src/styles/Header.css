@@ -1,0 +1,46 @@
+.header {
+  position: fixed;
+  background-color: red;
+  top: 0;
+  padding: 8px 20px;
+  left: 0;
+  right: 0;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+.logo-left {
+  height: 40px;
+  width: auto;
+}
+
+.header-nav {
+  display: flex;
+  gap: 20px;
+}
+
+.nav-button {
+  color: orange; /* Оранжевый цвет текста */
+  text-decoration: none; /* Убираем стандартное подчёркивание */
+  font-weight: bold;
+  padding: 8px 16px;
+  background: none; /* Прозрачный фон */
+  border: none; /* Убираем границы */
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.nav-button:hover::after,
+.nav-button.active::after {
+  content: '';
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 4px;
+  height: 2px;
+  background: orange;
+}
