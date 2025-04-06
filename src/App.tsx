@@ -3,7 +3,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ComicsPage from './pages/ComicsPage';
 import FavoritesPage from './pages/FavoritesPage';
-
+//проверка git
 function App() {
   return (
     <Router>

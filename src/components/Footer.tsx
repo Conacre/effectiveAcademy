@@ -13,7 +13,6 @@ export default function Footer() {
           <a 
             href="https://developer.marvel.com" 
             target="_blank" 
-           
             className="footer-link"
           >
             developer.marvel.com
