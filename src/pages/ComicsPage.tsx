@@ -9,25 +9,21 @@ const mockComics = [
     id: 1,
     title: "The Amazing Spider-Man",
     thumbnail: spidermanImg,
-    price: 3.99
   },
   {
     id: 2,
     title: "Iron Man: Extremis",
     thumbnail: ironmanImg,
-    price: 4.99
   },
   {
     id: 3,
     title: "Avengers: Endgame",
     thumbnail: avengersImg,
-    price: 5.99
   },
   {
     id: 4,
     title: "Black Panther",
     thumbnail: blackpantherImg,
-    price: 3.49
   }
 ];
 
@@ -44,9 +40,9 @@ export default function ComicsPage() {
               className="comic-thumbnail"
             />
             <h3>{comic.title}</h3>
-            <p>${comic.price.toFixed(2)}</p>
+            
             <button className="add-to-favorites">
-              Add to Favorites
+              Add
             </button>
           </div>
         ))}
