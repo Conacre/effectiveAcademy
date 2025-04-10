@@ -34,8 +34,8 @@ export default function ComicsPage() {
   const toggleFavorite = (id: number) => {
     setFavorites(prevFavorites =>
       prevFavorites.includes(id)
-        ? prevFavorites.filter(favId => favId !== id) // Удалить из избранного
-        : [...prevFavorites, id] // Добавить в избранное
+        ? prevFavorites.filter(favId => favId !== id)
+        : [...prevFavorites, id]
     );
   };
 
