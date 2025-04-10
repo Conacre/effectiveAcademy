@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import '../styles/ComicsPage.css';
 import spidermanImg from '../assets/spiderman.jpg';
 import ironmanImg from '../assets/ironman.jpg';
@@ -28,6 +29,16 @@ const mockComics = [
 ];
 
 export default function ComicsPage() {
+  const [favorites, setFavorites] = useState<number[]>([]);
+
+  const toggleFavorite = (id: number) => {
+    setFavorites(prevFavorites =>
+      prevFavorites.includes(id)
+        ? prevFavorites.filter(favId => favId !== id) // Удалить из избранного
+        : [...prevFavorites, id] // Добавить в избранное
+    );
+  };
+
   return (
     <div className="comics-page">
       <h1 className="comics-title">Comics</h1>
@@ -41,8 +52,10 @@ export default function ComicsPage() {
             />
             <h3>{comic.title}</h3>
             
-            <button className="add-to-favorites">
-              Add
+            <button
+              className={`add-to-favorites ${favorites.includes(comic.id) ? 'active' : ''}`}
+              onClick={() => toggleFavorite(comic.id)}
+            >
             </button>
           </div>
         ))}

@@ -19,6 +19,7 @@
   }
   
   .comic-card {
+    position: relative; /* Для позиционирования кнопки внутри карточки */
     background: white;
     border-radius: 8px;
     overflow: hidden;
@@ -38,6 +39,26 @@
     object-fit: cover;
     margin-bottom: 10px;
   }
-  .add-to-favorite {
-    
+  
+  .add-to-favorites {
+    position: absolute;
+    bottom: 10px; /* Перемещаем кнопку вниз */
+    left: 10px; /* Перемещаем кнопку влево */
+    width: 30px;
+    height: 30px;
+    background: url('../assets/heart-white.svg') no-repeat center center;
+    background-size: contain;
+    border: none;
+    cursor: pointer;
+    opacity: 0; /* Скрываем кнопку по умолчанию */
+    transition: opacity 0.3s ease;
+  }
+  
+  .comic-card:hover .add-to-favorites {
+    opacity: 1; /* Показываем кнопку при наведении на карточку */
+  }
+  
+  .add-to-favorites.active {
+    background: url('../assets/heart-red.svg') no-repeat center center;
+    background-size: contain;
   }
