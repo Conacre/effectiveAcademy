@@ -25,11 +25,44 @@ const mockComics = [
     id: 4,
     title: "Black Panther",
     thumbnail: blackpantherImg,
-  }
+  },
+  {
+    id: 5,
+    title: "The Amazing Spider-Man",
+    thumbnail: spidermanImg,
+  },
+  {
+    id: 6,
+    title: "Iron Man: Extremis",
+    thumbnail: ironmanImg,
+  },
+  {
+    id: 7,
+    title: "Avengers: Endgame",
+    thumbnail: avengersImg,
+  },
+  {
+    id: 8,
+    title: "Black Panther",
+    thumbnail: blackpantherImg,
+  },
+  {
+    id: 9,
+    title: "The Amazing Spider-Man",
+    thumbnail: spidermanImg,
+  },
+  {
+    id: 10,
+    title: "Iron Man: Extremis",
+    thumbnail: ironmanImg,
+  },
 ];
+
+const ITEMS_PER_PAGE = 6;
 
 export default function ComicsPage() {
   const [favorites, setFavorites] = useState<number[]>([]);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const toggleFavorite = (id: number) => {
     setFavorites(prevFavorites =>
@@ -39,11 +72,19 @@ export default function ComicsPage() {
     );
   };
 
+  const totalPages = Math.ceil(mockComics.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const currentComics = mockComics.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div className="comics-page">
       <h1 className="comics-title">Comics</h1>
       <div className="comics-grid">
-        {mockComics.map(comic => (
+        {currentComics.map(comic => (
           <div key={comic.id} className="comic-card">
             <img 
               src={comic.thumbnail} 
@@ -58,6 +99,18 @@ export default function ComicsPage() {
             >
             </button>
           </div>
+        ))}
+      </div>
+
+      <div className="pagination">
+        {Array.from({ length: totalPages }, (_, index) => (
+          <button
+            key={index + 1}
+            className={`pagination-button ${currentPage === index + 1 ? 'active' : ''}`}
+            onClick={() => handlePageChange(index + 1)}
+          >
+            {index + 1}
+          </button>
         ))}
       </div>
     </div>
