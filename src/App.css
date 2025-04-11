@@ -1,13 +1,13 @@
 .app {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .content {
-    flex: 1;
-    padding: 80px 20px 70px;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    overflow-y: auto;
-  }
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  flex: 1;
+  padding: 80px 20px 70px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+  overflow-y: auto;
+}

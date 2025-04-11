@@ -2,19 +2,18 @@
   position: fixed;
   background-color: red;
   top: 0;
-  padding: 8px 20px;
   left: 0;
   right: 0;
   height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 8px 20px;
   z-index: 100;
 }
 
 .logo-left {
   height: 40px;
-  width: auto;
 }
 
 .header-nav {
@@ -34,7 +33,8 @@
   position: relative;
 }
 
-.nav-button:hover::after, .nav-button.active::after {
+.nav-button:hover::after,
+.nav-button.active::after {
   content: '';
   position: absolute;
   left: 16px;
