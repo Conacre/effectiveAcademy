@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styles from '../styles/ComicsPage.module.css';
 import { mockComics } from '../data/mockComics';
+import ComicCard from '../components/ComicCard';
 
 const ITEMS_PER_PAGE = 6;
 
@@ -31,27 +32,15 @@ export default function ComicsPage() {
       <h1 className={styles['comics-title']}>Comics</h1>
       <div className={styles['comics-grid']}>
         {currentComics.map((comic) => (
-          <div
+          <ComicCard
             key={comic.id}
-            className={styles['comic-card']}
+            id={comic.id}
+            title={comic.title}
+            thumbnail={`${comic.thumbnail}`}
+            isFavorite={favorites.includes(comic.id)}
+            onToggleFavorite={toggleFavorite}
             onClick={() => navigate(`/comics/${comic.id}`)}
-          >
-            <img
-              src={comic.thumbnail}
-              alt={comic.title}
-              className={styles['comic-thumbnail']}
-            />
-            <h3>{comic.title}</h3>
-            <button
-              className={`${styles['add-to-favorites']} ${
-                favorites.includes(comic.id) ? styles['active'] : ''
-              }`}
-              onClick={(e) => {
-                e.stopPropagation();
-                toggleFavorite(comic.id);
-              }}
-            ></button>
-          </div>
+          />
         ))}
       </div>
 
