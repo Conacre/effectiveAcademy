@@ -1,10 +1,12 @@
+@import './colors.css';
+
 .footer {
   position: fixed;
-  background-color: gray;
+  background-color: var(--color-background-gray);
   bottom: 0;
   left: 0;
   right: 0;
-  color: white;
+  color: var(--color-background);
   padding: 10px 15px;
   z-index: 100;
 }

@@ -1,13 +1,15 @@
+@import './colors.css';
+
 .comics-page {
   padding: 100px 20px 80px;
   min-height: 100vh;
-  background-color: #f5f5f5;
+  background-color: var(--color-background);
 }
 
 .comics-title {
   text-align: center;
   margin-bottom: 30px;
-  color: #333;
+  color: var(--color-text);
 }
 
 .comics-grid {
@@ -20,7 +22,7 @@
 
 .comic-card {
   position: relative;
-  background: white;
+  background: var(--color-text-light);
   border-radius: 8px;
   overflow: hidden;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
@@ -81,8 +83,8 @@
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background-color: gray;
-  color: white;
+  background-color: var(--color-border);
+  color: var(--color-text-light);
   border: none;
   cursor: pointer;
   font-size: 16px;
@@ -93,9 +95,9 @@
 }
 
 .pagination-button.active {
-  background-color: red;
+  background-color: var(--color-primary);
 }
 
 .pagination-button:hover {
-  background-color: darkgray;
+  background-color: var(--color-hover);
 }

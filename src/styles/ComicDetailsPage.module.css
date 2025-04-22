@@ -1,3 +1,5 @@
+@import './colors.css';
+
 .comic-header {
   position: relative;
   width: 100%;
@@ -30,26 +32,26 @@
 .comic-navigation button {
   padding: 5px 10px;
   background-color: transparent;
-  color: #000000;
+  color: var(--color-black);
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .comic-navigation button:hover {
-  background-color: #000000;
-  color: white;
+  background-color: var(--color-black);
+  color: var(--color-background);
 }
 
 .comic-info h1 {
   margin-bottom: 10px;
   font-size: 20px;
-  color: #000000;
+  color: var(--color-black);
 }
 
 .comic-info p {
   margin-top: 0;
   font-size: 16px;
-  color: #000000;
+  color: var(--color-black);
   line-height: 1.6;
 }

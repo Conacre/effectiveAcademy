@@ -1,6 +1,8 @@
+@import './colors.css';
+
 .header {
   position: fixed;
-  background-color: red;
+  background-color: var(--color-primary);
   top: 0;
   left: 0;
   right: 0;
@@ -22,7 +24,7 @@
 }
 
 .nav-button {
-  color: orange;
+  color: var(--color-secondary);
   text-decoration: none;
   font-weight: bold;
   padding: 8px 16px;
