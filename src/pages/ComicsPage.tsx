@@ -1,55 +1,66 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { observer } from 'mobx-react-lite';
+import { useEffect } from 'react';
+import { comicsStore } from '../stores/ComicsStore';
+import { favoritesStore } from '../stores/FavoritesStore';
 import styles from '../styles/ComicsPage.module.css';
-import { mockComics } from '../data/mockComics';
-import ComicCard from '../components/ComicCard';
 
-const ITEMS_PER_PAGE = 6;
+const ComicsPage = observer(() => {
+  const { comics, total, offset, pageSize, loadComics, isLoading } = comicsStore;
+  const { favorites, addFavorite, removeFavorite } = favoritesStore;
 
-export default function ComicsPage() {
-  const navigate = useNavigate();
-  const [favorites, setFavorites] = useState<number[]>([]);
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const toggleFavorite = (id: number) => {
-    setFavorites((prevFavorites) =>
-      prevFavorites.includes(id)
-        ? prevFavorites.filter((favId) => favId !== id)
-        : [...prevFavorites, id]
-    );
-  };
-
-  const totalPages = Math.ceil(mockComics.length / ITEMS_PER_PAGE);
-  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
-  const currentComics = mockComics.slice(startIndex, startIndex + ITEMS_PER_PAGE);
+  useEffect(() => {
+    loadComics();
+  }, []);
 
   const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    loadComics((page - 1) * pageSize);
   };
+
+  const isFavorite = (comicId: number) => favorites.some((comic) => comic.id === comicId);
+
+  const toggleFavorite = (comic: any) => {
+    if (isFavorite(comic.id)) {
+      removeFavorite(comic.id);
+    } else {
+      addFavorite(comic);
+    }
+  };
+
+  const totalPages = Math.ceil(total / pageSize);
 
   return (
     <div className={styles['comics-page']}>
-      <h1 className={styles['comics-title']}>Comics</h1>
-      <div className={styles['comics-grid']}>
-        {currentComics.map((comic) => (
-          <ComicCard
-            key={comic.id}
-            id={comic.id}
-            title={comic.title}
-            thumbnail={`${comic.thumbnail}`}
-            isFavorite={favorites.includes(comic.id)}
-            onToggleFavorite={toggleFavorite}
-            onClick={() => navigate(`/comics/${comic.id}`)}
-          />
-        ))}
-      </div>
-
+      <h1 className={styles['comics-title']}>Marvel Comics</h1>
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <div className={styles['comics-grid']}>
+          {comics.map((comic) => (
+            <div key={comic.id} className={styles['comic-card']}>
+              <img
+                src={`${comic.thumbnail.path}.${comic.thumbnail.extension}`}
+                alt={comic.title}
+                className={styles['comic-thumbnail']}
+              />
+              <h3>{comic.title}</h3>
+              <button
+                className={`${styles['add-to-favorites']} ${
+                  isFavorite(comic.id) ? styles['active'] : ''
+                }`}
+                onClick={() => toggleFavorite(comic)}
+              >
+                {isFavorite(comic.id) ? 'Remove from Favorites' : 'Add to Favorites'}
+              </button>
+            </div>
+          ))}
+        </div>
+      )}
       <div className={styles['pagination']}>
         {Array.from({ length: totalPages }, (_, index) => (
           <button
             key={index + 1}
             className={`${styles['pagination-button']} ${
-              currentPage === index + 1 ? styles['active'] : ''
+              offset / pageSize + 1 === index + 1 ? styles['active'] : ''
             }`}
             onClick={() => handlePageChange(index + 1)}
           >
@@ -59,4 +70,6 @@ export default function ComicsPage() {
       </div>
     </div>
   );
-}
+});
+
+export default ComicsPage;
