@@ -1,8 +1,8 @@
 @import './colors.css';
 
 .comics-page {
-  padding: 100px 20px 80px;
-  min-height: 100vh;
+  padding: 80px 20px 60px; /* Учитываем высоту шапки и футера */
+  min-height: calc(100vh - 140px); /* Высота экрана минус шапка и футер */
   background-color: var(--color-background);
 }
 
@@ -14,8 +14,8 @@
 
 .comics-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(6, 1fr); /* 6 карточек в ряд */
+  gap: 10px; /* Уменьшаем расстояние между карточками */
   max-width: 1200px;
   margin: 0 auto;
 }
@@ -28,7 +28,8 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s;
   text-align: center;
-  padding-bottom: 15px;
+  padding-bottom: 5px; /* Уменьшаем внутренние отступы */
+  height: 160px; /* Уменьшаем высоту карточки */
 }
 
 .comic-card:hover {
@@ -37,7 +38,7 @@
 
 .comic-thumbnail {
   width: 100%;
-  height: 250px;
+  height: 90px; /* Уменьшаем высоту изображения */
   object-fit: cover;
   margin-bottom: 5px;
 }
@@ -46,8 +47,8 @@
   position: absolute;
   bottom: 10px;
   left: 10px;
-  width: 30px;
-  height: 30px;
+  width: 20px; /* Уменьшаем размер кнопки */
+  height: 20px;
   background: url('../assets/heart-white.svg') no-repeat center center;
   background-size: contain;
   border: none;
@@ -66,17 +67,24 @@
 }
 
 .comic-card h3 {
-  font-size: 22px;
+  font-size: 12px; /* Уменьшаем размер текста */
   color: #333;
   text-align: center;
+  margin: 5px 0;
 }
 
 .pagination {
+  position: fixed; /* Закрепляем пагинацию */
+  bottom: 87px; /* Располагаем её в нижней части экрана */
+  left: 50%; /* Центрируем по горизонтали */
+  transform: translateX(-50%); /* Центрируем относительно середины */
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-top: 30px;
   gap: 15px;
+  padding: 10px 20px; /* Добавляем внутренние отступы */
+  border-radius: 8px; /* Скругляем углы */
+  z-index: 100; /* Устанавливаем высокий z-index, чтобы пагинация была поверх содержимого */
 }
 
 .pagination-button {
